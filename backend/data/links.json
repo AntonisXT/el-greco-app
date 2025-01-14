@@ -1,0 +1,15 @@
+[
+    {
+      "id": 1,
+      "category": "Web Links",
+      "url": "https://elgreco.net",
+      "description": "Επίσημη Ιστοσελίδα"
+    },
+    {
+      "id": 2,
+      "category": "Books",
+      "url": "https://example.com/el-greco-book",
+      "description": "Βιβλίο για τον El Greco"
+    }
+  ]
+   

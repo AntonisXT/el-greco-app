@@ -21,7 +21,7 @@ async function login(username, password) {
         // Αποθήκευση του JWT στο localStorage
         localStorage.setItem("token", data.token);
         alert("Επιτυχής σύνδεση!");
-        window.location.href = "/el-greco-app/frontend/index.html"; // Ανακατεύθυνση στην κύρια σελίδα
+        window.location.href = "/index.html"; // Ανακατεύθυνση στην κύρια σελίδα
     } catch (error) {
         console.error("Σφάλμα σύνδεσης:", error.message);
         alert(error.message);

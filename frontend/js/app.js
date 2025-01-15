@@ -431,7 +431,3 @@ async function loadLinksByCategory(category) {
       '<p>Σφάλμα κατά τη φόρτωση των συνδέσμων.</p>';
   }
 }
-
-
-// Ορισμός του API_URL
-const API_URL = "http://localhost:10000";

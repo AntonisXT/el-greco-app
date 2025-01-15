@@ -1,6 +1,6 @@
 // auth.js
 
-const API_URL = "http://localhost:10000";
+const API_URL = "https://el-greco-app.onrender.com";
 // Είσοδος χρήστη
 async function login(username, password) {
     try {

@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:10000";
+const API_URL = "https://el-greco-app.onrender.com";
 import { fetchWithAuth } from './auth.js';
 
 export async function fetchExhibitions() {

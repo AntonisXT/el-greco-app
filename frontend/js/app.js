@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     managementMenu.classList.remove('visible');
   }
 
-  // Διαχείριση υποβολής φόρμας σύνδεσης
+  // Διαχείριση υποβολής σύνδεσης
   const loginForm = document.getElementById('loginForm');
   loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -341,7 +341,6 @@ async function loadLinks() {
   }
 }
 
-// Ενημέρωση της editExhibition function
 window.editExhibition = function(id, title, date, location, category) {
   document.getElementById('exhibitionId').value = id;
   document.getElementById('title').value = title;
@@ -382,7 +381,6 @@ window.deleteLink = async function(id) {
   }
 };
 
-// Προσθήκη νέων συναρτήσεων για φόρτωση ανά κατηγορία
 async function loadExhibitionsByCategory(category) {
   try {
     const response = await fetch(`${API_URL}/api/exhibitions`);

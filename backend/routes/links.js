@@ -30,4 +30,34 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
+// PUT update link (protected route)
+router.put('/:id', auth, async (req, res) => {
+  try {
+    const link = await Link.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    if (!link) {
+      return res.status(404).json({ msg: 'Link not found' });
+    }
+    res.json(link);
+  } catch (err) {
+    res.status(500).json({ msg: 'Server Error' });
+  }
+});
+
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    const link = await Link.findById(req.params.id);
+    if (!link) {
+      return res.status(404).json({ msg: 'Link not found' });
+    }
+    await Link.findByIdAndDelete(req.params.id);
+    res.json({ msg: 'Link removed' });
+  } catch (err) {
+    res.status(500).json({ msg: 'Server Error' });
+  }
+});
+
 module.exports = router;

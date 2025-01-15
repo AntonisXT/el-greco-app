@@ -1,4 +1,3 @@
-require('dotenv').config({ path: 'D:/Code/Web_project/el-greco-app/backend/.env' });
 const mongoose = require("mongoose");
 
 const connectDB = async () => {

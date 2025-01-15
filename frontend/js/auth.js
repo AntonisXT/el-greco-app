@@ -1,7 +1,6 @@
 // auth.js
 
-//const API_URL = "http://localhost:5000/api"; // Τροποποίησε το αν έχεις διαφορετικό backend URL
-const API_URL = "http://localhost:5000/api";
+const API_URL = "http://localhost:10000";
 // Είσοδος χρήστη
 async function login(username, password) {
     try {
@@ -22,7 +21,7 @@ async function login(username, password) {
         // Αποθήκευση του JWT στο localStorage
         localStorage.setItem("token", data.token);
         alert("Επιτυχής σύνδεση!");
-        window.location.href = "/"; // Ανακατεύθυνση στην κύρια σελίδα
+        window.location.href = "/el-greco-app/frontend/index.html"; // Ανακατεύθυνση στην κύρια σελίδα
     } catch (error) {
         console.error("Σφάλμα σύνδεσης:", error.message);
         alert(error.message);
@@ -44,27 +43,31 @@ function getToken() {
 function logout() {
     localStorage.removeItem("token");
     alert("Έχετε αποσυνδεθεί!");
-    window.location.href = "/login.html"; // Ανακατεύθυνση στη σελίδα σύνδεσης
 }
 
-// Προσθήκη του token στα αιτήματα (Authorization Header)
 async function fetchWithAuth(url, options = {}) {
     const token = getToken();
     if (!token) {
-        alert("Παρακαλώ συνδεθείτε πρώτα!");
-        window.location.href = "/login.html";
-        return;
+      throw new Error('No authentication token found');
     }
-
+  
     const headers = {
-        ...options.headers,
-        Authorization: `Bearer ${token}`,
+      ...options.headers,
+      'Authorization': `${token}`,
+      'Content-Type': 'application/json',
     };
-
-    return fetch(url, {
-        ...options,
-        headers,
+  
+    const response = await fetch(url, {
+      ...options,
+      headers,
     });
+  
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'API request failed');
+    }
+  
+    return response;
 }
 
 // Εξαγωγή λειτουργιών

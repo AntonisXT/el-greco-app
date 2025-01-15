@@ -15,10 +15,12 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
+app.use('/auth', require('./routes/authRoutes'));
+app.use('/login', require('./routes/authRoutes'));
 app.use('/api/exhibitions', require('./routes/exhibitions'));
 app.use('/api/links', require('./routes/links'));
 
 
 // Server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

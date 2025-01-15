@@ -1,15 +1,21 @@
 const express = require("express");
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs"); // Αν χρησιμοποιούμε hashed passwords
 const router = express.Router();
 
+const plainPassword = "project123"; // Επιθυμητό password
+const salt = bcrypt.genSaltSync(10);
+const hashedPassword = bcrypt.hashSync(plainPassword, salt);
+
 // Mock data (π.χ., διαχειριστής)
 const admin = {
   username: "admin",
-  password: "$2a$10$yH1F8sZ/qVtPfTUMT9kW7O.L9OaYlEwPQtiRLkm9JG5J3H7.o.vzW" // bcrypt hash για το "admin123"
+  password: hashedPassword // bcrypt hash για το "admin123"
 };
 
-// POST /api/login
+// POST /auth/login
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
@@ -25,7 +31,7 @@ router.post("/login", async (req, res) => {
   }
 
   // Δημιουργία JWT
-  const token = jwt.sign({ username: admin.username }, "secretkey", {
+  const token = jwt.sign({ username: admin.username }, process.env.JWT_SECRET, {
     expiresIn: "1h", // Λήξη σε 1 ώρα
   });
 

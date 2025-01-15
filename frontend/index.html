@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div class="grid-container">
+  <div class="flex-container">
     <header>
       <h1>Δομήνικος Θεοτοκόπουλος (El Greco)</h1>
     </header>
@@ -22,55 +22,79 @@
       </ul>
     </nav>
     
-    <aside>
-      <div id="aside-biography" class="hidden">
-        <p>Καμία επιλογή πλευρικού μενού  βιογραφία.</p>
-      </div>
-      <div id="aside-paintings" class="hidden">
-        <ul>
-          <li><a href="#" data-category="portraits">Πορτρέτα</a></li>
-          <li><a href="#" data-category="religious">Θρησκευτικά Έργα</a></li>
-        </ul>
-      </div>
-      <div id="aside-exhibitions" class="hidden">
-        <p>Επιλέξτε έκθεση από την παρακάτω λίστα.</p>
-      </div>
-      <div id="aside-links" class="hidden">
-        <ul>
-          <li><a href="#" data-category="web-links">Διαδικτυακοί Σύνδεσμοι</a></li>
-          <li><a href="#" data-category="books">Βιβλιογραφία</a></li>
-        </ul>
-      </div>
-      <div id="aside-management">
-        <div id="loginFormContainer" class="hidden">
-          <h2>Σύνδεση Χρήστη</h2>
-          <form id="loginForm">
-            <label for="username">Όνομα Χρήστη:</label>
-            <input type="text" id="username" required>
-            <label for="password">Κωδικός:</label>
-            <input type="password" id="password" required>
-            <button type="submit">Σύνδεση</button>
-          </form>
+    <div class="main-container">
+      <aside>
+        <div id="aside-biography" class="hidden">
+          <ul>
+            <li><a href="#" data-category="early-years">Πρώτα Χρόνια</a></li>
+            <li><a href="#" data-category="italy-period">Περίοδος στην Ιταλία</a></li>
+            <li><a href="#" data-category="spain-period">Περίοδος στην Ισπανία</a></li>
+          </ul>
         </div>
-        
-        <div id="loggedInContainer" class="hidden">
-          <h2>Καλώς ήρθες!</h2>
-          <button id="logoutButton">Αποσύνδεση</button>
+        <div id="aside-paintings" class="hidden">
+          <ul>
+            <li><a href="#" data-category="portraits">Πορτρέτα</a></li>
+            <li><a href="#" data-category="religious">Θρησκευτικά Έργα</a></li>
+          </ul>
         </div>
-      </div>      
-        
-      </div>
-    </aside>
-    
-    <main>
-      <section id="content">
-        <p>Καλώς ήρθατε στην εφαρμογή El Greco. Επιλέξτε από το μενού.</p>
-        <li><a href="#" id="adminLink" class="hidden" data-section="management">Διαχείριση</a></li>
-      </section>
-    </main>
+        <div id="aside-exhibitions" class="hidden">
+          <h3>Κατηγορίες Εκθέσεων</h3>
+          <ul>
+            <li><a href="#" data-category="Μόνιμες Εκθέσεις">Μόνιμες Εκθέσεις</a></li>
+            <li><a href="#" data-category="Περιοδικές Εκθέσεις">Περιοδικές Εκθέσεις</a></li>
+            <li><a href="#" data-category="Ιστορικές Εκθέσεις">Ιστορικές Εκθέσεις</a></li>
+          </ul>
+        </div>
+        <div id="aside-links" class="hidden">
+          <h3>Κατηγορίες Συνδέσμων</h3>
+          <ul>
+            <li><a href="#" data-category="Διαδικτυακοί Σύνδεσμοι">Διαδικτυακοί Σύνδεσμοι</a></li>
+            <li><a href="#" data-category="Βιβλιογραφία">Βιβλιογραφία</a></li>
+            <li><a href="#" data-category="Σύνδεσμοι Μουσείων">Σύνδεσμοι Μουσείων</a></li>
+          </ul>
+        </div>
+        <div id="aside-management">
+          <div id="loginFormContainer" class="hidden">
+            <h2>Διαχειριστής</h2>
+            <form id="loginForm">
+              <label for="username">Όνομα Διαχειριστή:</label>
+              <input type="text" id="username" required>
+              <label for="password">Κωδικός:</label>
+              <input type="password" id="password" required>
+              <button type="submit">Σύνδεση</button>
+            </form>
+          </div>
+          
+          <div id="loggedInContainer" class="hidden">
+            <h2>Καλώς ήρθες!</h2>
+            <button id="logoutButton">Αποσύνδεση</button>
+            
+            <div id="managementMenu" class="hidden">
+              <h2>Επιλογές</h2>
+              <div class="management-options-container">
+                <a href="#" id="manageExhibitions" class="management-option">
+                  <div class="management-card">
+                    <h3>Διαχείριση Εκθέσεων</h3>
+                  </div>
+                </a>
+                <a href="#" id="manageLinks" class="management-option">
+                  <div class="management-card">
+                    <h3>Διαχείριση Συνδέσμων</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+        </div>
+      </aside>
+      
+      <main>
+        <section id="content">
+        </section>
+      </main>
+    </div>
     
     <footer>
-      <p>© 2025 - Εργασία Δομήνικο Θεοτοκόπουλο</p>
+      <p>© 2025 - Εργασία για τον Δομήνικο Θεοτοκόπουλο</p>
     </footer>
   </div>
   <script type="module" src="js/app.js"></script>

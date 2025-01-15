@@ -1,20 +1,133 @@
-async function fetchExhibitions() {
-    const response = await fetch('/api/exhibitions');
+const API_URL = "http://localhost:10000";
+import { fetchWithAuth } from './auth.js';
+
+export async function fetchExhibitions() {
+  try {
+    const response = await fetch(`${API_URL}/api/exhibitions`);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
     const exhibitions = await response.json();
-    const mainContent = document.getElementById('content');
-    mainContent.innerHTML = '<h2>Εκθέσεις</h2>';
-    exhibitions.forEach(ex => {
-      mainContent.innerHTML += `<p>${ex.title} - ${ex.date} (${ex.location})</p>`;
-    });
+    return exhibitions;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
   }
-  
-  async function fetchLinks() {
-    const response = await fetch('/api/links');
-    const links = await response.json();
-    const mainContent = document.getElementById('content');
-    mainContent.innerHTML = '<h2>Σύνδεσμοι</h2>';
-    links.forEach(link => {
-      mainContent.innerHTML += `<p><a href="${link.url}" target="_blank">${link.description}</a></p>`;
+}
+
+export async function addExhibition(exhibition) {
+  try {
+    const response = await fetchWithAuth(`${API_URL}/api/exhibitions`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(exhibition),
     });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.msg || 'Failed to add exhibition');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error in addExhibition:', error);
+    throw error;
   }
-  
+}
+
+
+export async function updateExhibition(id, exhibition) {
+  try {
+    const response = await fetchWithAuth(`${API_URL}/api/exhibitions/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(exhibition),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.msg || 'Failed to update exhibition');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error in updateExhibition:', error);
+    throw error;
+  }
+}
+
+export async function deleteExhibition(id) {
+  try {
+    const response = await fetchWithAuth(`${API_URL}/api/exhibitions/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.msg || 'Failed to delete exhibition');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error in deleteExhibition:', error);
+    throw error;
+  }
+}
+
+// Σύνδεσμοι
+export async function fetchLinks() {
+  try {
+    const response = await fetch(`${API_URL}/api/links`);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+}
+
+export async function addLink(link) {
+  const response = await fetchWithAuth(`${API_URL}/api/links`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(link),
+  });
+  return response.json();
+}
+
+export async function updateLink(id, link) {
+  const response = await fetchWithAuth(`${API_URL}/api/links/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(link),
+  });
+  return response.json();
+}
+
+export async function deleteLink(id) {
+  try {
+    const response = await fetchWithAuth(`${API_URL}/api/links/${id}`, {
+      method: 'DELETE',
+    });
+    
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.msg || 'Failed to delete link');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error in deleteLink:', error);
+    throw error;
+  }
+}

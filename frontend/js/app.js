@@ -6,6 +6,8 @@ import {
   addLink, updateLink, deleteLink
 } from './fetchData.js';
 
+const API_URL = "https://el-greco-app.onrender.com";
+
 document.addEventListener('DOMContentLoaded', () => {
   const loginFormContainer = document.getElementById('loginFormContainer');
   const loggedInContainer = document.getElementById('loggedInContainer');

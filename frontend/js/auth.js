@@ -20,7 +20,7 @@ async function login(username, password) {
         const data = await response.json();
         // Αποθήκευση του JWT στο localStorage
         localStorage.setItem("token", data.token);
-        alert("Επιτυχής σύνδεση!");
+        //alert("Επιτυχής σύνδεση!");
         window.location.href = "/index.html"; // Ανακατεύθυνση στην κύρια σελίδα
     } catch (error) {
         console.error("Σφάλμα σύνδεσης:", error.message);
@@ -42,7 +42,7 @@ function getToken() {
 // Αποσύνδεση χρήστη
 function logout() {
     localStorage.removeItem("token");
-    alert("Έχετε αποσυνδεθεί!");
+    //alert("Έχετε αποσυνδεθεί!");
 }
 
 async function fetchWithAuth(url, options = {}) {

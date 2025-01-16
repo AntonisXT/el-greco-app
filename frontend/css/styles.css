@@ -13,7 +13,7 @@ body {
 }
 
 /* Grid Layout */
-.flex-container {
+.grid-container {
   display: grid;
   grid-template-areas:
     "header"
